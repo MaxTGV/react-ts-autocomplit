@@ -28,7 +28,12 @@ const SearchImage = styled.img`
   top: 20px;
 `;
 
-export const Input = ({ value, handleChange }) => {
+interface IInput {
+  value: string,
+  handleChange(e: React.ChangeEvent<HTMLInputElement>): void
+}
+
+export const Input: React.FC<IInput> = ({ value, handleChange }) => {
   return (
     <SearchContainer>
       <SearchImage src={search} alt="Search"/>

@@ -1,7 +1,7 @@
 import { filterPhotos } from "./shared/filterPhotos";
 import { filterData } from "./shared/filterData";
 
-export const fetchData = async (value) => {
+export const fetchData = async (value: string) => {
   if (value) {
     const users = await fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())

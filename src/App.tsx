@@ -4,6 +4,7 @@ import { fetchData } from "./api";
 import { DropDownBox } from "./DropDownBox";
 import { Input } from "./Input";
 import { Loader } from "./Loader";
+import { DataType } from "./type";
 
 const ContentContainer = styled.div`
   margin: 30px auto;
@@ -12,18 +13,20 @@ const ContentContainer = styled.div`
 `;
 
 export const App = () => {
-  const [value, setValue] = useState("");
-  const [data, setData] = useState();
-  const [isClicked, setIsClicked] = useState(false);
+  const [value, setValue] = useState<string>("");
+  const [data, setData] = useState<DataType>();
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  console.log(data);
+  console.log(value);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     setIsClicked(false);
   };
 
-  const handleClick = (name) => {
+  const handleClick = (name: string) => {
     setValue(name);
-    setData();
+    setData(undefined);
     setIsClicked(true);
   };
 
@@ -37,8 +40,8 @@ export const App = () => {
 
   return (
     <ContentContainer>
-      <Input value={value} handleChange={handleChange} />
-      {!data && value && <Loader />}
+      <Input value={value} handleChange={handleChange}/>
+      {!data && value && <Loader /> }
       {data && !isClicked && (
         <DropDownBox data={data} handleClick={handleClick} />
       )}
