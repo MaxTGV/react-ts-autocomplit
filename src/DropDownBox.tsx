@@ -12,14 +12,14 @@ const StyledDropDownBox = styled.div`
   border-radius: 0px 0px 8px 8px;
 `;
 
-const User = styled.div<{ column: string, row: number }>`
+const User = styled.div<{ column: string; row: number }>`
   grid-column: ${(prop) => prop.column};
   grid-row: ${(prop) => prop.row};
   padding: 10px;
   cursor: pointer;
 `;
 
-const Image = styled.div<{ column: string, row: number, image: string}>`
+const Image = styled.div<{ column: string; row: number; image: string }>`
   grid-column: ${(prop) => prop.column};
   grid-row: ${(prop) => prop.row};
   background: no-repeat center / 100% url(${(prop) => prop.image});
@@ -28,11 +28,11 @@ const Image = styled.div<{ column: string, row: number, image: string}>`
 `;
 
 interface IDropDownBox {
-  data: DataType,
-  handleClick(name: string): void
+  data: DataType;
+  handleClick(name: string): void;
 }
 
-export const DropDownBox: React.FC<IDropDownBox> = ({data, handleClick}) => {
+export const DropDownBox = ({ data, handleClick }: IDropDownBox) => {
   const { users, photos } = data;
   return (
     <StyledDropDownBox>

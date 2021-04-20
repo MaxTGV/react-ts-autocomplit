@@ -16,8 +16,7 @@ export const App = () => {
   const [value, setValue] = useState<string>("");
   const [data, setData] = useState<DataType>();
   const [isClicked, setIsClicked] = useState<boolean>(false);
-  console.log(data);
-  console.log(value);
+  const [error, setError] = useState<any>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -32,16 +31,24 @@ export const App = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      const data = await fetchData(value);
-      setData(data);
+      try {
+        const data = await fetchData(value);
+        setData(data);
+      } catch (error) {
+        setError(error);
+      }
     };
     loadData();
   }, [value]);
 
+  if (error) {
+    return <>ERROR: {error.message}</>;
+  }
+
   return (
     <ContentContainer>
-      <Input value={value} handleChange={handleChange}/>
-      {!data && value && <Loader /> }
+      <Input value={value} handleChange={handleChange} />
+      {!data && value && <Loader />}
       {data && !isClicked && (
         <DropDownBox data={data} handleClick={handleClick} />
       )}

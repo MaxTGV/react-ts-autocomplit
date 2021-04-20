@@ -33,7 +33,7 @@ interface IInput {
   handleChange(e: React.ChangeEvent<HTMLInputElement>): void
 }
 
-export const Input: React.FC<IInput> = ({ value, handleChange }) => {
+export const Input = ({ value, handleChange }: IInput) => {
   return (
     <SearchContainer>
       <SearchImage src={search} alt="Search"/>

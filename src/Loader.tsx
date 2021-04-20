@@ -23,7 +23,7 @@ const StyledLoader = styled.div`
 export const Loader = () => {
   return (
     <StyledLoader>
-      <img src={loader} alt="alt" />
+      <img src={loader} alt="loader" />
     </StyledLoader>
   );
 };
